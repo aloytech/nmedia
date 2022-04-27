@@ -84,51 +84,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/half_spacing"
+        android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/like_button"
         app:layout_constraintStart_toEndOf="@+id/like_button"
         app:layout_constraintTop_toTopOf="@+id/like_button"
-        tools:text="@sample/posts.json/data/likes"
-        android:textColor="@color/red"
-        />
+        tools:text="@sample/posts.json/data/likes" />
+
     <ImageButton
         android:id="@+id/repost_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintStart_toEndOf="@id/count_likes_view"
         app:layout_constraintTop_toTopOf="@id/like_button"
-        app:layout_constraintBottom_toBottomOf="@id/like_button"
-        android:layout_marginStart="@dimen/common_spacing"
-        tools:src="@drawable/ic_baseline_share_24"
-        android:background="@android:color/transparent"
-        />
+        tools:src="@drawable/ic_baseline_share_24" />
+
     <TextView
         android:id="@+id/count_repost_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/half_spacing"
+        android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/like_button"
         app:layout_constraintStart_toEndOf="@+id/repost_button"
         app:layout_constraintTop_toTopOf="@+id/like_button"
-        tools:text="@sample/posts.json/data/reposts"
-        android:textColor="@color/blue"
-        />
+        tools:text="@sample/posts.json/data/reposts" />
+
     <TextView
         android:id="@+id/watches_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/like_button"
-        app:layout_constraintBottom_toBottomOf="@id/like_button"
-        tools:text="@sample/posts.json/data/watches"
-        android:textColor="@color/blue"/>
+        tools:text="@sample/posts.json/data/watches" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/like_button"
+        android:layout_marginEnd="@dimen/half_spacing"
+        android:src="@drawable/ic_baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintEnd_toStartOf="@id/watches_view"
-        android:src="@drawable/ic_baseline_remove_red_eye_24"
-        android:layout_marginEnd="@dimen/half_spacing"
+        app:layout_constraintTop_toTopOf="@id/like_button"
 
         />
 
