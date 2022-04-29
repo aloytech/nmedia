@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/avatar_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:contentDescription="@string/avatar_place"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,15 +41,16 @@
         app:layout_constraintTop_toBottomOf="@id/author_text_view"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/show_menu"
+        android:src="@drawable/ic_baseline_more_vert_24"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_baseline_more_vert_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/avatar_barrier"
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:barrierMargin="@dimen/common_spacing"
-        app:constraint_referenced_ids="avatar_view,published_text_view" />
+        app:constraint_referenced_ids="avatar_view,published_text_view,menu_button" />
 
     <TextView
         android:id="@+id/post_text"
@@ -69,13 +70,17 @@
         app:layout_constraintTop_toBottomOf="@id/avatar_barrier"
         tools:text="@sample/posts.json/data/postText" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/like_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/half_spacing"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/show_menu"
+        android:contentDescription="@string/like_button"
+        android:src="@drawable/ic_outline_favorite_border_24"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@id/count_likes_view"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/post_text"
         tools:src="@drawable/ic_outline_favorite_border_24" />
 
@@ -83,29 +88,30 @@
         android:id="@+id/count_likes_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/half_spacing"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/like_button"
         app:layout_constraintStart_toEndOf="@+id/like_button"
         app:layout_constraintTop_toTopOf="@+id/like_button"
         tools:text="@sample/posts.json/data/likes" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/repost_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/repost_button"
+        android:src="@drawable/ic_baseline_share_24"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/like_button"
+        app:layout_constraintEnd_toStartOf="@id/count_repost_view"
         app:layout_constraintStart_toEndOf="@id/count_likes_view"
-        app:layout_constraintTop_toTopOf="@id/like_button"
-        tools:src="@drawable/ic_baseline_share_24" />
+        app:layout_constraintTop_toTopOf="@id/like_button" />
 
     <TextView
         android:id="@+id/count_repost_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/half_spacing"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/like_button"
         app:layout_constraintStart_toEndOf="@+id/repost_button"
@@ -123,9 +129,10 @@
         tools:text="@sample/posts.json/data/watches" />
 
     <ImageView
+        android:id="@+id/watches_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/half_spacing"
+        android:contentDescription="@string/watches"
         android:src="@drawable/ic_baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintEnd_toStartOf="@id/watches_view"
