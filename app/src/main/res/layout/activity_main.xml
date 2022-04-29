@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/author_text_view"
         tools:text="@sample/posts.json/data/published" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/avatar_barrier"
         tools:text="@sample/posts.json/data/postText" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/like_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toTopOf="@+id/like_button"
         tools:text="@sample/posts.json/data/likes" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/repost_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,9 +136,7 @@
         android:src="@drawable/ic_baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintEnd_toStartOf="@id/watches_view"
-        app:layout_constraintTop_toTopOf="@id/like_button"
-
-        />
+        app:layout_constraintTop_toTopOf="@id/like_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
