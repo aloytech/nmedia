@@ -7,7 +7,4 @@ class PostViewModel : ViewModel() {
     val data = repository.get()
     fun likeDislike() = repository.likeDislike()
     fun repost() = repository.repost()
-    fun likesToString() = repository.likesToString()
-    fun watchesToString() = repository.watchesToString()
-    fun repostsToString() = repository.repostsToString()
 }

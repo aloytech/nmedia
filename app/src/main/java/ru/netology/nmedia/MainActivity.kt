@@ -13,41 +13,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        viewModel.data.observe(this) {
-            initViews(viewModel, binding)
-            initButtons(viewModel, binding)
+
+        initButtons(viewModel, binding)
+
+        viewModel.data.observe(this) { post ->
+            initViews(post, binding)
         }
-
-
     }
 
     private fun initButtons(viewModel: PostViewModel, binding: ActivityMainBinding) {
         with(binding) {
             likeButton.setOnClickListener {
-                if (viewModel.likeDislike()) {
-                    likeButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                } else {
-                    likeButton.setImageResource(R.drawable.ic_outline_favorite_border_24)
-                }
-                countLikesView.text = viewModel.likesToString()
+                viewModel.likeDislike()
             }
             repostButton.setOnClickListener {
                 viewModel.repost()
-                countRepostView.text = viewModel.repostsToString()
             }
         }
     }
 
-    private fun initViews(viewModel: PostViewModel, binding: ActivityMainBinding) {
+    private fun initViews(post: Post, binding: ActivityMainBinding) {
         with(binding) {
-            authorTextView.text = viewModel.data.value?.author
-            publishedTextView.text = viewModel.data.value?.published
-            postText.text = viewModel.data.value?.content
+            authorTextView.text = post.author
+            publishedTextView.text = post.published
+            postText.text = post.content
             avatarView.setImageResource(R.drawable.ic_launcher_foreground)
-            countLikesView.text = viewModel.likesToString()
-            countRepostView.text = viewModel.repostsToString()
-            watchesView.text = viewModel.watchesToString()
-            if (viewModel.data.value?.likedByMe == true) {
+            countLikesView.text = post.likesToString()
+            countRepostView.text = post.repostsToString()
+            watchesView.text = post.watchesToString()
+            if (post.likedByMe) {
                 likeButton.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {
                 likeButton.setImageResource(R.drawable.ic_outline_favorite_border_24)
