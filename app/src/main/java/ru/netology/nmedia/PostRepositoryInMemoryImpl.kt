@@ -4,33 +4,53 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class PostRepositoryInMemoryImpl : PostRepository {
-    private var post = Post(
-        id = 1,
-        author = "Нетология. Университет интернет-профессий будущего",
-        content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
-        published = "27 апреля в 16:36",
-        likeCount = 999,
-        repostCount = 9999,
-        watchesCount = 3256000,
-        likedByMe = false
+    private var posts = listOf(
+        Post(
+            id = 1,
+            author = "Нетология. Университет интернет-профессий будущего",
+            content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
+            published = "27 апреля в 16:36",
+            likeCount = 999,
+            repostCount = 9999,
+            watchesCount = 3256000,
+            likedByMe = false
+        ),
+        Post(
+            id = 2,
+            author = "Нетология. Университет интернет-профессий будущего",
+            content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
+            published = "16 мая в 16:36",
+            likeCount = 999,
+            repostCount = 999999,
+            watchesCount = 22600,
+            likedByMe = false
+        )
     )
-    private val data = MutableLiveData(post)
-    override fun get(): LiveData<Post> = data
+    private val data = MutableLiveData(posts)
+    override fun getAll(): LiveData<List<Post>> = data
 
-    override fun likeDislike(): Boolean {
-        post = post.copy(likedByMe = !post.likedByMe)
-        if (post.likedByMe) {
-            post = post.copy(likeCount = post.likeCount + 1)
-        } else {
-            post = post.copy(likeCount = post.likeCount - 1)
+    override fun likeDislike(id: Int): Boolean {
+
+        posts = posts.map {
+            if (it.id != id) {
+                it
+            } else {
+                if (it.likedByMe) {
+                    it.copy(likedByMe = !it.likedByMe, likeCount = it.likeCount + 1)
+                } else {
+                    it.copy(likedByMe = !it.likedByMe, likeCount = it.likeCount - 1)
+                }
+            }
         }
-        data.value = post
-        return post.likedByMe
+        data.value = posts
+        return posts[id].likedByMe
     }
 
-    override fun repost() {
-        post = post.copy(repostCount = post.repostCount + 1)
-        data.value = post
+    override fun repost(id: Int) {
+        posts = posts.map {
+            if (it.id != id) it else it.copy(repostCount = it.repostCount + 1)
+        }
+        data.value = posts
     }
 
 
