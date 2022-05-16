@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">НМедиа</string>
+    <string name="out_string">НМедиа!</string>
+    <string name="avatar_place">Место для аватара</string>
+    <string name="show_menu">Показать меню</string>
+    <string name="like_button">Нажмите, если нравится</string>
+    <string name="repost_button">Нажмите, чтобы поделиться</string>
+    <string name="watches">Количество просмотров</string>
+</resources>
