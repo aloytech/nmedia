@@ -4,6 +4,6 @@ import androidx.lifecycle.LiveData
 
 interface PostRepository {
     fun getAll(): LiveData<List<Post>>
-    fun likeDislike(id: Int): Boolean
+    fun likeDislike(id: Int)
     fun repost(id: Int)
 }

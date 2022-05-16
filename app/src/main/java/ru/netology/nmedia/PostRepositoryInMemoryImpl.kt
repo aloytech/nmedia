@@ -20,30 +20,39 @@ class PostRepositoryInMemoryImpl : PostRepository {
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
             published = "16 мая в 16:36",
-            likeCount = 999,
+            likeCount = 10000,
             repostCount = 999999,
             watchesCount = 22600,
+            likedByMe = true
+        ),
+        Post(
+            id = 3,
+            author = "Нетология. Университет интернет-профессий будущего",
+            content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
+            published = "16 мая в 20:36",
+            likeCount = 23,
+            repostCount = 51,
+            watchesCount = 227600,
             likedByMe = false
         )
     )
     private val data = MutableLiveData(posts)
     override fun getAll(): LiveData<List<Post>> = data
 
-    override fun likeDislike(id: Int): Boolean {
+    override fun likeDislike(id: Int) {
 
         posts = posts.map {
             if (it.id != id) {
                 it
             } else {
                 if (it.likedByMe) {
-                    it.copy(likedByMe = !it.likedByMe, likeCount = it.likeCount + 1)
-                } else {
                     it.copy(likedByMe = !it.likedByMe, likeCount = it.likeCount - 1)
+                } else {
+                    it.copy(likedByMe = !it.likedByMe, likeCount = it.likeCount + 1)
                 }
             }
         }
         data.value = posts
-        return posts[id].likedByMe
     }
 
     override fun repost(id: Int) {
