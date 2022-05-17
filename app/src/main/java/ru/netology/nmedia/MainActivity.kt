@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        val adapter = PostAdapter(viewModel::likeDislike, viewModel::repost)
+        val adapter = PostAdapter(viewModel::likeDislike, viewModel::repost, viewModel::removeById)
 
         binding.postRecycler.adapter = adapter
         viewModel.data.observe(this) { posts ->

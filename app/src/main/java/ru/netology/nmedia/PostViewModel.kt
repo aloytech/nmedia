@@ -7,4 +7,5 @@ class PostViewModel : ViewModel() {
     val data = repository.getAll()
     fun likeDislike(id: Int) = repository.likeDislike(id)
     fun repost(id: Int) = repository.repost(id)
+    fun removeById(id: Int) = repository.removeById(id)
 }
