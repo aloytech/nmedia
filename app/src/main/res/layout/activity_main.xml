@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,8 +9,53 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/post_card" />
+        tools:listitem="@layout/post_card"
+        app:layout_wrapBehaviorInParent="vertical_only"
+        app:layout_constraintBottom_toTopOf="@id/tools_barrier"
+        app:layout_constraintTop_toTopOf="parent"
 
-</FrameLayout>
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/tools_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="new_content,save_button"
+
+        />
+    <EditText
+        android:id="@+id/new_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tools_barrier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/save_button"
+        android:hint="@string/hint_new_content"
+        android:padding="@dimen/common_spacing"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:background="@android:color/transparent"
+
+
+
+        />
+    <ImageButton
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/new_content"
+        app:layout_constraintTop_toTopOf="@+id/new_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/repost_button"
+        android:src="@drawable/ic_round_check_circle_outline_24"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

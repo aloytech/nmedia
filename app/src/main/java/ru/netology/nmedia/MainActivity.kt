@@ -2,6 +2,7 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.PostCardBinding
@@ -19,6 +20,20 @@ class MainActivity : AppCompatActivity() {
         binding.postRecycler.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
+        }
+        binding.saveButton.setOnClickListener {
+            with(binding.newContent) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(this@MainActivity, R.string.empty_content, Toast.LENGTH_SHORT)
+                        .show()
+                    return@setOnClickListener
+                }
+                viewModel.changeContent(text.toString())
+                viewModel.save()
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeboard(this)
+            }
         }
     }
 }

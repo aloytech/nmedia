@@ -34,8 +34,30 @@ class PostRepositoryInMemoryImpl : PostRepository {
             repostCount = 51,
             watchesCount = 227600,
             likedByMe = false
+        ),
+        Post(
+            id = 4,
+            author = "Нетология. Университет интернет-профессий будущего",
+            content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
+            published = "16 мая в 20:36",
+            likeCount = 20999,
+            repostCount = 99,
+            watchesCount = 227600,
+            likedByMe = false
+        ),
+        Post(
+            id = 5,
+            author = "Нетология. Университет интернет-профессий будущего",
+            content = "Привет, это новая Нетология! Когда-то нетология начиналасьс интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. http://netolo.gy/fyb",
+            published = "16 мая в 20:36",
+            likeCount = 10999,
+            repostCount = 34,
+            watchesCount = 227600,
+            likedByMe = false
         )
+
     )
+    private var nextId = 6
     private val data = MutableLiveData(posts)
     override fun getAll(): LiveData<List<Post>> = data
 
@@ -67,5 +89,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
-
+    override fun save(post: Post) {
+        posts = listOf(post.copy(id = nextId++, author = "Me")) + posts
+        data.value = posts
+        return
+    }
 }

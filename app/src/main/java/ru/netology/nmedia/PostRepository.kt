@@ -7,4 +7,5 @@ interface PostRepository {
     fun likeDislike(id: Int)
     fun repost(id: Int)
     fun removeById(id: Int)
+    fun save(post: Post)
 }
