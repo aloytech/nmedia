@@ -28,11 +28,24 @@ class MainActivity : AppCompatActivity() {
                 viewModel.removeById(id)
             }
 
+            override fun onEditItem(post: Post) {
+                viewModel.edit(post)
+            }
+
         })
 
         binding.postRecycler.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
+        }
+        viewModel.edited.observe(this){
+            if (it.id == 0){
+                return@observe
+            }
+            with(binding.newContent){
+                requestFocus()
+                setText(it.content)
+            }
         }
         binding.saveButton.setOnClickListener {
             with(binding.newContent) {
@@ -58,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
                 binding.groupButton.visibility = View.INVISIBLE
+                viewModel.clearEdited()
             }
         }
     }

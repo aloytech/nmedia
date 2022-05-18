@@ -4,4 +4,5 @@ interface OnInteractionListener {
     fun onLikeListener (id:Int)
     fun onRepostListener (id:Int)
     fun onRemoveListener (id:Int)
+    fun onEditItem (post:Post)
 }

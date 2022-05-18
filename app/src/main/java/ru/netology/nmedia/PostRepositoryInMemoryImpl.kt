@@ -2,6 +2,9 @@ package ru.netology.nmedia
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class PostRepositoryInMemoryImpl : PostRepository {
     private var posts = listOf(
@@ -90,8 +93,18 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun save(post: Post) {
-        posts = listOf(post.copy(id = nextId++, author = "Me")) + posts
+        if (post.id == 0){
+            val dateFormatter = SimpleDateFormat("dd MMMM yyyy hh:mm", Locale.getDefault())
+            val date = dateFormatter.format(Date())
+
+            posts = listOf(post.copy(id = nextId++, author = getCurrentUser(), published = date)) + posts
+            data.value = posts
+            return
+        }
+        posts = posts.map {
+            if (it.id != post.id) it else it.copy(content = post.content)
+        }
         data.value = posts
-        return
+
     }
 }

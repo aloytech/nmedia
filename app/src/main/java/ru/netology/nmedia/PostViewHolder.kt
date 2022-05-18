@@ -37,6 +37,10 @@ class PostViewHolder(
                                 onInteractionListener.onRemoveListener(post.id)
                                 true
                             }
+                            R.id.editItem -> {
+                                onInteractionListener.onEditItem(post)
+                                true
+                            }
                             else -> false
                         }
                     }

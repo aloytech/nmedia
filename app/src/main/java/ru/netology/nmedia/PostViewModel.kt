@@ -19,6 +19,8 @@ class PostViewModel : ViewModel() {
     fun likeDislike(id: Int) = repository.likeDislike(id)
     fun repost(id: Int) = repository.repost(id)
     fun removeById(id: Int) = repository.removeById(id)
+    fun clearEdited() { edited.value = empty }
+
     fun save(){
         edited.value?.let{
             repository.save(it)
@@ -33,5 +35,8 @@ class PostViewModel : ViewModel() {
             }
             edited.value = it.copy(content = text)
         }
+    }
+    fun edit (post:Post){
+        edited.value = post
     }
 }
