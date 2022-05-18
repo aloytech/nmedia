@@ -8,15 +8,12 @@ import ru.netology.nmedia.databinding.PostCardBinding
 
 typealias OnButtonClick = (id: Int) -> Unit
 
-class PostAdapter(
-    private val onLikeListener: OnButtonClick,
-    private val onRepostListener: OnButtonClick,
-    private val onRemoveListener: OnButtonClick
-) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+class PostAdapter(private val onInteractionListener: OnInteractionListener
 
+) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener, onRepostListener, onRemoveListener)
+        return PostViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {

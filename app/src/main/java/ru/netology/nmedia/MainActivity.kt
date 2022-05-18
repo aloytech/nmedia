@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.databinding.PostCardBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +16,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        val adapter = PostAdapter(viewModel::likeDislike, viewModel::repost, viewModel::removeById)
+        val adapter = PostAdapter(object : OnInteractionListener{
+            override fun onLikeListener(id: Int) {
+                viewModel.likeDislike(id)
+            }
+            override fun onRepostListener(id: Int) {
+                viewModel.repost(id)
+            }
+
+            override fun onRemoveListener(id: Int) {
+                viewModel.removeById(id)
+            }
+
+        })
 
         binding.postRecycler.adapter = adapter
         viewModel.data.observe(this) { posts ->
@@ -34,7 +45,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel.save()
                 setText("")
                 clearFocus()
-                AndroidUtils.hideKeboard(this)
+                AndroidUtils.hideKeyboard(this)
+                binding.groupButton.visibility = View.INVISIBLE
             }
         }
         binding.newContent.addTextChangedListener {
@@ -44,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             with(binding.newContent){
                 setText("")
                 clearFocus()
-                AndroidUtils.hideKeboard(this)
+                AndroidUtils.hideKeyboard(this)
                 binding.groupButton.visibility = View.INVISIBLE
             }
         }

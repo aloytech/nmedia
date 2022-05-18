@@ -6,9 +6,7 @@ import ru.netology.nmedia.databinding.PostCardBinding
 
 class PostViewHolder(
     private val binding: PostCardBinding,
-    private val onLikeListener: OnButtonClick,
-    private val onRepostListener: OnButtonClick,
-    private val onRemoveListener: OnButtonClick
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
@@ -25,10 +23,10 @@ class PostViewHolder(
                 likeButton.setImageResource(R.drawable.ic_outline_favorite_border_24)
             }
             likeButton.setOnClickListener {
-                onLikeListener(post.id)
+                onInteractionListener.onLikeListener(post.id)
             }
             repostButton.setOnClickListener {
-                onRepostListener(post.id)
+                onInteractionListener.onRepostListener(post.id)
             }
             menuButton.setOnClickListener{
                 PopupMenu(it.context,it).apply {
@@ -36,7 +34,7 @@ class PostViewHolder(
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.removeItem -> {
-                                onRemoveListener(post.id)
+                                onInteractionListener.onRemoveListener(post.id)
                                 true
                             }
                             else -> false
