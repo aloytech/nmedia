@@ -43,6 +43,12 @@
 
 
         />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="save_button,decline_button"/>
     <ImageButton
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
@@ -50,9 +56,24 @@
         app:layout_constraintStart_toEndOf="@id/new_content"
         app:layout_constraintTop_toTopOf="@+id/new_content"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/repost_button"
         android:src="@drawable/ic_round_check_circle_outline_24"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageButton
+        android:id="@+id/decline_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/new_content"
+        app:layout_constraintBottom_toTopOf="@+id/new_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="@dimen/common_spacing"
+        android:background="@android:color/white"
+        android:contentDescription="@string/decline_button"
+        android:src="@drawable/ic_round_decline_24"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         />

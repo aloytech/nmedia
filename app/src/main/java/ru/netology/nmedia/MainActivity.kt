@@ -2,8 +2,10 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.databinding.PostCardBinding
 
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeboard(this)
+            }
+        }
+        binding.newContent.addTextChangedListener {
+            binding.groupButton.visibility = View.VISIBLE
+        }
+        binding.declineButton.setOnClickListener {
+            with(binding.newContent){
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeboard(this)
+                binding.groupButton.visibility = View.INVISIBLE
             }
         }
     }

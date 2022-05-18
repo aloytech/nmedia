@@ -11,4 +11,5 @@
     <string name="hint_new_content">Введите текст для нового поста</string>
     <string name="save_button">Сохранить</string>
     <string name="empty_content">Заполните контент для поста</string>
+    <string name="decline_button">Отменить изменения</string>
 </resources>
