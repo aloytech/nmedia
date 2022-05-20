@@ -14,22 +14,18 @@ class PostViewHolder(
             publishedTextView.text = post.published
             postText.text = post.content
             avatarView.setImageResource(R.drawable.ic_launcher_foreground)
-            countLikesView.text = post.likesToString()
-            countRepostView.text = post.repostsToString()
+            likeButton.text = post.likesToString()
+            repostButton.text = post.repostsToString()
             watchesView.text = post.watchesToString()
-            if (post.likedByMe) {
-                likeButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-            } else {
-                likeButton.setImageResource(R.drawable.ic_outline_favorite_border_24)
-            }
+            likeButton.isChecked = post.likedByMe
             likeButton.setOnClickListener {
                 onInteractionListener.onLikeListener(post.id)
             }
             repostButton.setOnClickListener {
                 onInteractionListener.onRepostListener(post.id)
             }
-            menuButton.setOnClickListener{
-                PopupMenu(it.context,it).apply {
+            menuButton.setOnClickListener {
+                PopupMenu(it.context, it).apply {
                     inflate(R.menu.popup_post)
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {

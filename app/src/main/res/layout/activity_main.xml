@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/post_card"
-        app:layout_wrapBehaviorInParent="vertical_only"
         app:layout_constraintBottom_toTopOf="@id/tools_barrier"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_wrapBehaviorInParent="vertical_only"
+        tools:listitem="@layout/post_card"
 
         />
 
@@ -26,57 +26,61 @@
         app:constraint_referenced_ids="new_content,save_button"
 
         />
+
     <EditText
         android:id="@+id/new_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tools_barrier"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save_button"
+        android:background="@android:color/transparent"
         android:hint="@string/hint_new_content"
-        android:padding="@dimen/common_spacing"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:background="@android:color/transparent"
-
+        android:padding="@dimen/common_spacing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/save_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tools_barrier"
 
 
         />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:constraint_referenced_ids="save_button,decline_button"/>
-    <ImageButton
+        app:constraint_referenced_ids="save_button,decline_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/save_button"
+        style="@style/Widget.AppTheme.MenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/new_content"
-        app:layout_constraintTop_toTopOf="@+id/new_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingEnd="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/repost_button"
-        android:src="@drawable/ic_round_check_circle_outline_24"
+        android:paddingEnd="@dimen/common_spacing"
         android:visibility="visible"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
-    <ImageButton
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/new_content"
+        app:layout_constraintTop_toTopOf="@+id/new_content"
+        app:srcCompat="@drawable/ic_round_check_circle_outline_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/decline_button"
+        style="@style/Widget.AppTheme.MenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/new_content"
+        android:contentDescription="@string/decline_button"
+        android:paddingEnd="@dimen/common_spacing"
+        android:visibility="visible"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/new_content"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingEnd="@dimen/common_spacing"
-        android:background="@android:color/white"
-        android:contentDescription="@string/decline_button"
-        android:src="@drawable/ic_round_decline_24"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="@id/new_content"
+        app:srcCompat="@drawable/ic_round_decline_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
