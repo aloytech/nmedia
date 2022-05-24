@@ -7,4 +7,10 @@
     <string name="like_button">Нажмите, если нравится</string>
     <string name="repost_button">Нажмите, чтобы поделиться</string>
     <string name="watches">Количество просмотров</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="hint_new_content">Введите текст для нового поста</string>
+    <string name="save_button">Сохранить</string>
+    <string name="empty_content">Заполните контент для поста</string>
+    <string name="decline_button">Отменить изменения</string>
 </resources>

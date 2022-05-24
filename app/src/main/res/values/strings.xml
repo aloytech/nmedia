@@ -6,4 +6,10 @@
     <string name="like_button">Click to like\dislike</string>
     <string name="repost_button">Click to repost</string>
     <string name="watches">Watches count</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="hint_new_content">Enter new post</string>
+    <string name="save_button">Click to save</string>
+    <string name="empty_content">Please feel content for post</string>
+    <string name="decline_button">Click to discard changes</string>
 </resources>

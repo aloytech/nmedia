@@ -2,7 +2,10 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import ru.netology.nmedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,40 +16,63 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+        val adapter = PostAdapter(object : OnInteractionListener{
+            override fun onLikeListener(id: Int) {
+                viewModel.likeDislike(id)
+            }
+            override fun onRepostListener(id: Int) {
+                viewModel.repost(id)
+            }
 
-        initButtons(viewModel, binding)
+            override fun onRemoveListener(id: Int) {
+                viewModel.removeById(id)
+            }
 
-        viewModel.data.observe(this) { post ->
-            initViews(post, binding)
+            override fun onEditItem(post: Post) {
+                viewModel.edit(post)
+            }
+
+        })
+
+        binding.postRecycler.adapter = adapter
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
         }
-    }
-
-    private fun initButtons(viewModel: PostViewModel, binding: ActivityMainBinding) {
-        with(binding) {
-            likeButton.setOnClickListener {
-                viewModel.likeDislike()
+        viewModel.edited.observe(this){
+            if (it.id == 0){
+                return@observe
             }
-            repostButton.setOnClickListener {
-                viewModel.repost()
+            with(binding.newContent){
+                requestFocus()
+                setText(it.content)
             }
         }
-    }
-
-    private fun initViews(post: Post, binding: ActivityMainBinding) {
-        with(binding) {
-            authorTextView.text = post.author
-            publishedTextView.text = post.published
-            postText.text = post.content
-            avatarView.setImageResource(R.drawable.ic_launcher_foreground)
-            countLikesView.text = post.likesToString()
-            countRepostView.text = post.repostsToString()
-            watchesView.text = post.watchesToString()
-            if (post.likedByMe) {
-                likeButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-            } else {
-                likeButton.setImageResource(R.drawable.ic_outline_favorite_border_24)
+        binding.saveButton.setOnClickListener {
+            with(binding.newContent) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(this@MainActivity, R.string.empty_content, Toast.LENGTH_SHORT)
+                        .show()
+                    return@setOnClickListener
+                }
+                viewModel.changeContent(text.toString())
+                viewModel.save()
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+                binding.groupButton.visibility = View.INVISIBLE
             }
-
+        }
+        binding.newContent.addTextChangedListener {
+            binding.groupButton.visibility = View.VISIBLE
+        }
+        binding.declineButton.setOnClickListener {
+            with(binding.newContent){
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+                binding.groupButton.visibility = View.INVISIBLE
+                viewModel.clearEdited()
+            }
         }
     }
 }

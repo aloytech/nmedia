@@ -13,4 +13,20 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button">
+        <item name="iconTint">@color/red</item>
+        <item name="minWidth">@dimen/icon_button_min_size</item>
+        <item name="minHeight">@dimen/icon_button_min_size</item>
+        <item name="backgroundTint">@color/purple_100</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="elevation">@dimen/elevation</item>
+        <item name="borderWidth">@dimen/zero_pd</item>
+    </style>
+    <style name="Widget.AppTheme.RepostButton" parent="Widget.AppTheme.LikeButton">
+        <item name="iconTint">@color/purple_700</item>
+    </style>
+    <style name="Widget.AppTheme.MenuButton" parent="Widget.AppTheme.RepostButton">
+        <item name="maxWidth">@dimen/icon_button_min_size</item>
+    </style>
+
 </resources>
