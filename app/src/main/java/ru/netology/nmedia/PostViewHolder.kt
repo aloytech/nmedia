@@ -16,7 +16,7 @@ class PostViewHolder(
             avatarView.setImageResource(R.drawable.ic_launcher_foreground)
             likeButton.text = post.likesToString()
             repostButton.text = post.repostsToString()
-            watchesView.text = post.watchesToString()
+            watchesIcon.text = post.watchesToString()
             likeButton.isChecked = post.likedByMe
             likeButton.setOnClickListener {
                 onInteractionListener.onLikeListener(post.id)

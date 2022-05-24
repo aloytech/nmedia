@@ -101,23 +101,16 @@
         tools:text="@sample/posts.json/data/reposts" />
 
 
-    <TextView
-        android:id="@+id/watches_view"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/watches_icon"
+        style="@style/Widget.AppTheme.RepostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:contentDescription="@string/watches"
+        android:enabled="false"
+        app:icon="@drawable/ic_baseline_remove_red_eye_24"
         app:layout_constraintBottom_toBottomOf="@id/like_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/like_button"
         tools:text="@sample/posts.json/data/watches" />
-
-    <ImageView
-        android:id="@+id/watches_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/watches"
-        android:src="@drawable/ic_baseline_remove_red_eye_24"
-        app:layout_constraintBottom_toBottomOf="@id/like_button"
-        app:layout_constraintEnd_toStartOf="@id/watches_view"
-        app:layout_constraintTop_toTopOf="@id/like_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
