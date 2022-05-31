@@ -28,5 +28,8 @@
     <style name="Widget.AppTheme.MenuButton" parent="Widget.AppTheme.RepostButton">
         <item name="maxWidth">@dimen/icon_button_min_size</item>
     </style>
+    <style name="Widget.AppTheme.FAButton" parent="Widget.AppTheme.RepostButton">
+        <item name="backgroundTint">@color/teal_200</item>
+    </style>
 
 </resources>

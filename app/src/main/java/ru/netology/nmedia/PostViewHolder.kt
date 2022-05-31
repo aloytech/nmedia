@@ -1,13 +1,16 @@
 package ru.netology.nmedia
 
 import android.widget.PopupMenu
+import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.databinding.PostCardBinding
 
 class PostViewHolder(
     private val binding: PostCardBinding,
-    private val onInteractionListener: OnInteractionListener
+    private val onInteractionListener: OnInteractionListener,
+    private val registerForResult: ActivityResultLauncher<String?>
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
         binding.apply {
             authorTextView.text = post.author
@@ -35,6 +38,7 @@ class PostViewHolder(
                             }
                             R.id.editItem -> {
                                 onInteractionListener.onEditItem(post)
+                                registerForResult.launch(post.content)
                                 true
                             }
                             else -> false
