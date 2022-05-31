@@ -26,7 +26,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeCount = 10000,
             repostCount = 999999,
             watchesCount = 22600,
-            likedByMe = true
+            likedByMe = true,
+            video = "https://youtu.be/1G7rKRaTBOM"
         ),
         Post(
             id = 3,

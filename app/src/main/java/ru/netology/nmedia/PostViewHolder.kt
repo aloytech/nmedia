@@ -1,5 +1,9 @@
 package ru.netology.nmedia
 
+import android.content.Intent
+import android.net.Uri
+import android.opengl.Visibility
+import android.view.View
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +49,13 @@ class PostViewHolder(
                         }
                     }
                 }.show()
+            }
+            if (post.video != null){
+                videoLink.visibility = View.VISIBLE
+                videoLink.setOnClickListener{
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                    it.context.startActivity(intent)
+                }
             }
         }
     }
