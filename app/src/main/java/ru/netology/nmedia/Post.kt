@@ -8,7 +8,8 @@ data class Post(
     val likedByMe: Boolean,
     val likeCount: Int,
     val repostCount: Int,
-    val watchesCount: Int
+    val watchesCount: Int,
+    val video: String? = null
 ) {
     fun likesToString(): String {
         return shortCountOut(likeCount)
