@@ -1,18 +1,13 @@
 package ru.netology.nmedia
 
-import android.content.Intent
-import android.net.Uri
-import android.opengl.Visibility
 import android.view.View
 import android.widget.PopupMenu
-import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.databinding.PostCardBinding
 
 class PostViewHolder(
     private val binding: PostCardBinding,
-    private val onInteractionListener: OnInteractionListener,
-    private val registerForResult: ActivityResultLauncher<String?>
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
@@ -42,7 +37,6 @@ class PostViewHolder(
                             }
                             R.id.editItem -> {
                                 onInteractionListener.onEditItem(post)
-                                registerForResult.launch(post.content)
                                 true
                             }
                             else -> false
@@ -50,11 +44,10 @@ class PostViewHolder(
                     }
                 }.show()
             }
-            if (post.video != null){
+            if (post.video != null) {
                 videoLink.visibility = View.VISIBLE
-                videoLink.setOnClickListener{
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    it.context.startActivity(intent)
+                videoLink.setOnClickListener {
+                    onInteractionListener.launchVideoLink(post.video)
                 }
             }
         }
