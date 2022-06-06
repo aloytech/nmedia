@@ -6,4 +6,5 @@ interface OnInteractionListener {
     fun onRemoveListener(id: Int)
     fun onEditItem(post: Post)
     fun launchVideoLink(link: String)
+    fun onShowPost(id: Int)
 }

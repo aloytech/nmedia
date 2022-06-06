@@ -17,6 +17,11 @@ class FeedFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
+    companion object {
+        var Bundle.postIdArg: Int
+        set(value) = putInt("POST_ID",value)
+        get () = getInt("POST_ID")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +61,12 @@ class FeedFragment : Fragment() {
                         textArg = text
                     }
                 )
+            }
+            override fun onShowPost(id:Int){
+                findNavController().navigate(R.id.action_feedFragment_to_showPostFragment,
+                Bundle().apply {
+                    postIdArg = id
+                })
             }
 
             override fun launchVideoLink(link: String) {

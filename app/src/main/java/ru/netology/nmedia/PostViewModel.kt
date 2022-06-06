@@ -24,6 +24,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun likeDislike(id: Int) = repository.likeDislike(id)
     fun repost(id: Int) = repository.repost(id)
     fun removeById(id: Int) = repository.removeById(id)
+    fun showPost(id: Int):Post = repository.showPost(id)
 
     fun save() {
         edited.value?.let {

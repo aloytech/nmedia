@@ -20,6 +20,11 @@ class PostViewHolder(
             repostButton.text = post.repostsToString()
             watchesIcon.text = post.watchesToString()
             likeButton.isChecked = post.likedByMe
+
+            postText.setOnClickListener {
+                onInteractionListener.onShowPost(post.id)
+            }
+
             likeButton.setOnClickListener {
                 onInteractionListener.onLikeListener(post.id)
             }

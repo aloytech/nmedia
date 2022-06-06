@@ -103,4 +103,8 @@ class PostRepositoryInFileImpl(private val context: Context) : PostRepository {
         sync()
     }
 
+    override fun showPost(id: Int): Post {
+        return posts.filter { it.id == id }[0]
+    }
+
 }

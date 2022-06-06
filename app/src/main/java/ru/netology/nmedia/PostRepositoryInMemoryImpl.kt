@@ -108,4 +108,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
 
     }
+    override fun showPost(id: Int): Post {
+        return posts[id]
+    }
 }
