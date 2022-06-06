@@ -7,7 +7,7 @@ import androidx.activity.result.contract.ActivityResultContract
 
 class NewPostResultContract : ActivityResultContract<String?, String?>() {
     override fun createIntent(context: Context, input: String?): Intent {
-        return Intent(context, NewPostActivity::class.java).putExtra("content", input)
+        return Intent(context, NewPostFragment::class.java).putExtra("content", input)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): String? =

@@ -24,7 +24,7 @@ class PostViewHolder(
                 onInteractionListener.onLikeListener(post.id)
             }
             repostButton.setOnClickListener {
-                onInteractionListener.onRepostListener(post.id)
+                onInteractionListener.onRepostListener(post)
             }
             menuButton.setOnClickListener {
                 PopupMenu(it.context, it).apply {
