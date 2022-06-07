@@ -21,7 +21,7 @@ class PostViewHolder(
             watchesIcon.text = post.watchesToString()
             likeButton.isChecked = post.likedByMe
 
-            postText.setOnClickListener {
+            clickOnPost.setOnClickListener {
                 onInteractionListener.onShowPost(post.id)
             }
 
@@ -55,6 +55,7 @@ class PostViewHolder(
                     onInteractionListener.launchVideoLink(post.video)
                 }
             }
+
         }
     }
 }

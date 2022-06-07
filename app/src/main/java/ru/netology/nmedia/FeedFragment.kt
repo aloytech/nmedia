@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.netology.nmedia.NewPostFragment.Companion.textArg
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 
@@ -17,10 +18,11 @@ class FeedFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
+
     companion object {
         var Bundle.postIdArg: Int
-        set(value) = putInt("POST_ID",value)
-        get () = getInt("POST_ID")
+            set(value) = putInt("POST_ID", value)
+            get() = getInt("POST_ID")
     }
 
     override fun onCreateView(
@@ -29,6 +31,11 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding: FragmentFeedBinding = FragmentFeedBinding.inflate(inflater, container, false)
+
+        val id = arguments?.postIdArg
+        if (id != null) {
+            viewModel.removeById(id)
+        }
 
         val adapter = PostAdapter(object : OnInteractionListener {
             override fun onLikeListener(id: Int) {
@@ -62,11 +69,12 @@ class FeedFragment : Fragment() {
                     }
                 )
             }
-            override fun onShowPost(id:Int){
+
+            override fun onShowPost(id: Int) {
                 findNavController().navigate(R.id.action_feedFragment_to_showPostFragment,
-                Bundle().apply {
-                    postIdArg = id
-                })
+                    Bundle().apply {
+                        postIdArg = id
+                    })
             }
 
             override fun launchVideoLink(link: String) {
@@ -80,10 +88,10 @@ class FeedFragment : Fragment() {
         binding.newPost.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
+
         viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
         return binding.root
     }
-
 }
