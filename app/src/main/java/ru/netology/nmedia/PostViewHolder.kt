@@ -49,7 +49,7 @@ class PostViewHolder(
                     }
                 }.show()
             }
-            if (post.video != null) {
+            if (post.video != "") {
                 videoLink.visibility = View.VISIBLE
                 videoLink.setOnClickListener {
                     onInteractionListener.launchVideoLink(post.video)

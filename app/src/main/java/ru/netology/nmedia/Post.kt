@@ -6,10 +6,10 @@ data class Post(
     val content: String,
     val published: String,
     val likedByMe: Boolean,
-    val likeCount: Int,
-    val repostCount: Int,
-    val watchesCount: Int,
-    val video: String? = null
+    val likeCount: Int = 0,
+    val repostCount: Int = 0,
+    val watchesCount: Int = 0,
+    val video: String = ""
 ) {
     fun likesToString(): String {
         return shortCountOut(likeCount)

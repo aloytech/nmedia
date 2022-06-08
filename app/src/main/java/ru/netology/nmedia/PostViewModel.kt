@@ -13,18 +13,22 @@ private val empty = Post(
     likeCount = 0,
     repostCount = 0,
     watchesCount = 0,
-    likedByMe = false
+    likedByMe = false,
+    video = ""
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     //private val repository: PostRepository = PostRepositoryInMemoryImpl()
-    private val repository: PostRepository = PostRepositoryInFileImpl(application)
+    //private val repository: PostRepository = PostRepositoryInFileImpl(application)
+    private val repository: PostRepository = PostRepositorySQLiteImpl(
+        AppDb.getInstance(application).dao
+    )
     val data = repository.getAll()
     private val edited = MutableLiveData(empty)
     fun likeDislike(id: Int) = repository.likeDislike(id)
     fun repost(id: Int) = repository.repost(id)
     fun removeById(id: Int) = repository.removeById(id)
-    fun showPost(id: Int):Post = repository.showPost(id)
+    fun showPost(id: Int): Post = repository.showPost(id)
 
     fun save() {
         edited.value?.let {
