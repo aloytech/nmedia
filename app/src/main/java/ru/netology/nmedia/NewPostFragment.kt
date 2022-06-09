@@ -1,9 +1,12 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,9 +31,14 @@ class NewPostFragment : Fragment() {
             NewPostFragmentBinding.inflate(inflater, container, false)
 
         binding.newContent.requestFocus()
+        if (viewModel.draft != "") {
+            binding.newContent.setText(viewModel.draft)
+        }
 
         arguments?.textArg
             ?.let(binding.newContent::setText)
+
+
 
         binding.saveButton.setOnClickListener {
             val content = binding.newContent.text.toString()
@@ -42,6 +50,14 @@ class NewPostFragment : Fragment() {
         binding.declineButton.setOnClickListener {
             binding.newContent.text.clear()
         }
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            viewModel.saveDraft(binding.newContent.text.toString())
+            AndroidUtils.hideKeyboard(requireView())
+            findNavController().navigateUp()
+        }
+        callback.isEnabled
+
         return binding.root
     }
 }
