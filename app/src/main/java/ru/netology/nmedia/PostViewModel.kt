@@ -3,7 +3,8 @@ package ru.netology.nmedia
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 private val empty = Post(
     id = 0,
@@ -20,8 +21,9 @@ private val empty = Post(
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     //private val repository: PostRepository = PostRepositoryInMemoryImpl()
     //private val repository: PostRepository = PostRepositoryInFileImpl(application)
-    private val repository: PostRepository = PostRepositorySQLiteImpl(
-        AppDb.getInstance(application).dao
+    //private val repository: PostRepository = PostRepositorySQLiteImpl(
+    private val repository: PostRepository = PostRepositoryImpl(
+        AppDb.getInstance(application).postDao()
     )
     val data = repository.getAll()
     var draft: String = ""
@@ -33,7 +35,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun save() {
         edited.value?.let {
-            repository.save(it)
+            val dateFormatter = SimpleDateFormat("dd MMMM yyyy hh:mm", Locale.getDefault())
+            val date = dateFormatter.format(Date())
+            val post = it.copy(published = date, author = getCurrentUser())
+            repository.save(post)
         }
         edited.value = empty
         draft = ""
