@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+        
+      - name: Decode google-services.json
+        env:
+          FB_SECRET: ${{ secrets.FB_SECRET }}
+        run: echo $FB_SECRET > ./app/google-services.json
 
       - name: Build
         run: |
