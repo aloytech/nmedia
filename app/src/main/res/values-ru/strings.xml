@@ -13,4 +13,6 @@
     <string name="save_button">Сохранить</string>
     <string name="empty_content">Заполните контент для поста</string>
     <string name="decline_button">Отменить изменения</string>
+    <string name="video_button">Запустить видео</string>
+    <string name="chooser_share_post">Поделиться...</string>
 </resources>

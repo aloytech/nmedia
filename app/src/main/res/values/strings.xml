@@ -12,4 +12,6 @@
     <string name="save_button">Click to save</string>
     <string name="empty_content">Please feel content for post</string>
     <string name="decline_button">Click to discard changes</string>
+    <string name="video_button">Click to play video</string>
+    <string name="chooser_share_post">Share post</string>
 </resources>
