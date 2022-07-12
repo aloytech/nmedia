@@ -13,4 +13,15 @@
     <string name="save_button">Сохранить</string>
     <string name="empty_content">Заполните контент для поста</string>
     <string name="decline_button">Отменить изменения</string>
+    <string name="video_button">Запустить видео</string>
+    <string name="chooser_share_post">Поделиться…</string>
+    <string name="channel_remote_name">Уведомления с сервера</string>
+    <string name="channel_remote_description">Уведомления с сервера</string>
+    <string name="google_play_unavailable">Google Api недоступен</string>
+    <string name="notification_user_liked">Пользователю %1$s нравится %2$s пост</string>
+    <string name="notification_user_repost">Пользователь %1$s поделился %2$s\'s постом</string>
+    <string name="notification_unknown">Пришло новое уведомление с сервера…</string>
+    <string name="notification_new_post">Пользователь %1$s добавил новый пост:</string>
+    <string name="unknown_message_format">Не удалось распознать сообщение</string>
+    <string name="msg_token_fmt">token: %1$s</string>
 </resources>
