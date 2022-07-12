@@ -1,54 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/tools_barrier"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_wrapBehaviorInParent="vertical_only"
-        tools:listitem="@layout/post_card"
-
-        />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/tools_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="new_content,save_button"
-
-        />
+    android:padding="@dimen/icon_button_min_size"
+    tools:context=".NewPostFragment">
 
     <EditText
         android:id="@+id/new_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:hint="@string/hint_new_content"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:padding="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save_button"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tools_barrier"
-
-
         />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:constraint_referenced_ids="save_button,decline_button" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -57,14 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/repost_button"
+        android:contentDescription="@string/save_button"
         android:paddingEnd="@dimen/common_spacing"
         android:visibility="visible"
         app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/new_content"
-        app:layout_constraintTop_toTopOf="@+id/new_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/decline_button"
+        app:layout_constraintTop_toBottomOf="@+id/new_content"
         app:srcCompat="@drawable/ic_round_check_circle_outline_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -76,11 +51,9 @@
         android:paddingEnd="@dimen/common_spacing"
         android:visibility="visible"
         app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/new_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/new_content"
+        app:layout_constraintStart_toEndOf="@id/save_button"
+        app:layout_constraintTop_toBottomOf="@id/new_content"
         app:srcCompat="@drawable/ic_round_decline_24" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

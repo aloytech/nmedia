@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/common_spacing">
+    android:padding="@dimen/common_spacing"
+    tools:context=".ShowPostFragment">
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/click_on_post"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        app:constraint_referenced_ids="avatar_view,author_text_view,published_text_view,post_text"
+        app:layout_constraintBottom_toBottomOf="@id/post_text"
+        app:layout_constraintTop_toTopOf="@id/avatar_view" />
 
     <ImageView
         android:id="@+id/avatar_view"
@@ -69,6 +79,25 @@
         app:layout_constraintTop_toBottomOf="@id/avatar_barrier"
         tools:text="@sample/posts.json/data/postText" />
 
+    <ImageButton
+        android:id="@+id/video_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:contentDescription="@string/video_button"
+        android:src="@drawable/ic_baseline_play_arrow_24"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/post_text" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/content_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="post_text, video_link" />
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/like_button"
         style="@style/Widget.AppTheme.LikeButton"
@@ -81,7 +110,7 @@
         app:icon="@drawable/ic_like_24dp"
         app:layout_constraintEnd_toStartOf="@id/repost_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/post_text"
+        app:layout_constraintTop_toBottomOf="@id/content_barrier"
         tools:checked="true"
 
         tools:text="@sample/posts.json/data/likes" />
@@ -113,4 +142,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/like_button"
         tools:text="@sample/posts.json/data/watches" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
